@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
-import org.hibernate.dialect.PostgreSQLDialect;
+import org.hibernate.dialect.PostgreSQL82Dialect;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.cache.CacheManager;
 import org.springframework.cloud.config.java.AbstractCloudConfig;
@@ -48,7 +48,7 @@ public class CloudFoundryDataSourceConfiguration extends AbstractCloudConfig  {
         Map<String, String> p = new HashMap<String, String>();
         p.put(org.hibernate.cfg.Environment.HBM2DDL_AUTO, "create");
         p.put(org.hibernate.cfg.Environment.HBM2DDL_IMPORT_FILES, "initialCustomers.sql");
-        p.put(org.hibernate.cfg.Environment.DIALECT, PostgreSQLDialect.class.getName());
+        p.put(org.hibernate.cfg.Environment.DIALECT, PostgreSQL82Dialect.class.getName());
         p.put(org.hibernate.cfg.Environment.SHOW_SQL, "true");
         em.setJpaPropertyMap(p);
         return em;
