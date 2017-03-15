@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.hibernate.dialect.PostgreSQLDialect;
-import org.hibernate.ejb.HibernatePersistence;
+import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.cache.CacheManager;
 import org.springframework.cloud.config.java.AbstractCloudConfig;
 import org.springframework.context.annotation.Bean;
@@ -44,7 +44,7 @@ public class CloudFoundryDataSourceConfiguration extends AbstractCloudConfig  {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource( dataSource );
         em.setPackagesToScan(Customer.class.getPackage().getName());
-        em.setPersistenceProvider(new HibernatePersistence());
+        em.setPersistenceProvider(new HibernatePersistenceProvider());
         Map<String, String> p = new HashMap<String, String>();
         p.put(org.hibernate.cfg.Environment.HBM2DDL_AUTO, "create");
         p.put(org.hibernate.cfg.Environment.HBM2DDL_IMPORT_FILES, "initialCustomers.sql");
